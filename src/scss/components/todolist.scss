@@ -1,0 +1,72 @@
+$ns: todoApp;
+$completed-color: $red;
+$magic: 2em;
+$button-add: ($magic * 2);
+
+body {
+  background: $offWhite;
+}
+.#{$ns} {
+  background: #fff;
+  font-family: sans-serif;
+  position: relative;
+  top: $magic;
+  display: block;
+  width: $mobileWidth;
+  margin: auto;
+  border: solid 1px #eee;
+  border-radius: 5px;
+  color: $fontColor;
+  & .addTodo {
+    border-bottom: solid 1px #eee;
+    font-size: 1em;
+    &__input {
+      width: calc(100% - #{$button-add});
+      vertical-align: middle;
+      padding: ($magic / 2);
+      border: none;
+      font-size: inherit;
+      &:focus {
+        outline: none;
+      }
+    }
+    &__button {
+      width: $button-add;
+      vertical-align: middle;
+      padding: ($magic / 2);
+      outline: none;
+      border: none;
+      border-radius: 0;
+      background: none;
+      cursor: pointer;
+      font-size: inherit;
+    }
+  }
+  & .todoList {
+    & .todoItem {
+      cursor: pointer;
+      border-bottom: solid 1px #eee;
+      padding: ($magic / 2);
+      text-indent: 0.5em;
+      &.completed {
+        text-decoration: line-through;
+        color: $completed-color;
+      }
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+  & .todoFooter {
+    padding: ($magic / 2);
+    font-size: 1em;
+    & .filterLink {
+      text-decoration: underline;
+      color: #999;
+      &__active {
+        text-decoration: none;
+        color: $green;
+      }
+    }
+  }
+}
