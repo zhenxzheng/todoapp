@@ -25,7 +25,8 @@ describe('reducer', () => {
     }
     const nextState = reducer(initialState, action);
     expect(nextState).to.equal(fromJS(
-      Object.assign({},initialState.toJSON(),{
+      {
+        ...initialState.toJSON(),
         todos: [
           {
             id: 0,
@@ -39,7 +40,7 @@ describe('reducer', () => {
           }
         ]
       })
-    ));
+    );
   });
 
   it('toggles completed', () => {
@@ -51,7 +52,8 @@ describe('reducer', () => {
     const nextNextState = reducer(nextState, action);
 
     expect(nextNextState).to.equal(fromJS(
-      Object.assign({},initialState.toJSON(),{
+      {
+        ...initialState.toJSON(),
         todos: [
           {
             id: 0,
@@ -60,6 +62,20 @@ describe('reducer', () => {
           }
         ],
       })
+    );
+  });
+
+  it('changes filter', () => {
+    const action = {
+      type: "SET_VISIBILITY_FILTER",
+      filter: "SHOW_ACTIVE"
+    };
+    const nextState = reducer(initialState, action);
+    expect(nextState).to.equal(fromJS(
+      {
+        ...initialState.toJSON(),
+        visibilityFilter: "SHOW_ACTIVE"
+      }
     ));
   });
 });
